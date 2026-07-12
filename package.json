@@ -1,0 +1,21 @@
+{
+  "name": "league-hq-bot",
+  "version": "0.1.0",
+  "description": "Internal Telegram + Claude assistant for the league business — chat, task tracking, and morning digests.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "docx": "^9.1.1",
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "node-cron": "^3.0.3",
+    "node-telegram-bot-api": "^0.66.0",
+    "pptxgenjs": "^3.12.0"
+  }
+}
