@@ -1,42 +1,73 @@
 ---
-name: sponsor-roi-reporting
-description: Build post-event or post-season sponsor performance reports showing reach, exposure, and whether contracted deliverables were fulfilled, for a sports league/IP production company reporting back to its sponsors. Use this whenever the user wants a sponsor recap, needs to show a sponsor their ROI, is preparing a renewal pitch backed by past performance data, or asks something like "what do we show [sponsor] after the event" or "put together the recap for the season." This is the follow-up step after an event runs and after a sponsorship deal was signed — pairs with the sponsorship-proposal-builder skill (which sells the deal) and the contract-review skill (which has the contracted deliverables to report against).
+name: sponsorship-proposal-builder
+description: Build sponsorship proposals, pitch decks, one-pagers, rate cards, and formal Hebrew price quotes (הצעת מחיר) for a sports league/IP production company pitching brands (footwear, apparel, tech, beverage, payments, etc.) on league or event sponsorship. Always use this whenever the user wants to pitch a sponsor, put together a sponsorship deck, build a rate card or partnership tiers, respond to a brand's inquiry about sponsoring the league, prepare materials ahead of a sponsor meeting or call, or generate a formal quote/הצעת מחיר for a sponsor — even if they don't say the word "sponsorship" explicitly (e.g. "I have a call with Nike next week", "put together something for Puma", "תכין לי הצעת מחיר ללקוח"). This is for creating NEW outbound sponsorship materials, not for reviewing signed contracts (use the contract-review skill for that).
 ---
 
 ## Overview
 
-This skill turns raw event data (attendance, impressions, social metrics, activation photos, media mentions) into a report showing a sponsor what they got for their money. This matters most at renewal time — a strong recap is often the best sales tool for the next season's ask, so treat this as connected to (not separate from) the sponsorship-proposal-builder skill.
+This skill helps build the commercial materials used to sell sponsorship of a sports league/IP (the business owns and operates recurring league/event properties and monetizes them partly through brand sponsorship). The counterpart to this skill is contract review — this skill is for the *sell* side, before a deal is signed: pitch decks, rate cards, and proposal one-pagers.
 
 ## Ask before building
 
-1. **Which sponsor and which contract/deal** — pull the contracted deliverables list first (from the signed agreement, or ask the user to paste/upload it) so the report is structured around what was promised, not just what's easy to measure.
-2. **What data is available** — attendance numbers, broadcast/stream viewership, social media metrics (impressions, engagement, follower growth from tagged posts), photos/proof of activation (signage, jersey branding, on-site booth), media coverage/press mentions.
-3. **Scope** — single event or full-season recap across multiple events?
-4. **Output** — a formal recap deck for a sponsor meeting (.pptx), an internal tracking sheet (.xlsx), or a written report (.docx)?
+If not already clear from the conversation, ask (briefly, not as an exhaustive interrogation):
+1. **Which brand/prospect** is this for, and do we know their category (footwear, apparel, tech, beverage, payments, travel, etc.)?
+2. **What's the ask** — title sponsor, category sponsor, single-event activation, or renewal of an existing deal?
+3. **What inventory exists** — has the user given you (or is there in the project) a list of assets: jersey/court/venue branding, digital placements, hospitality, player appearance rights, content/social integrations?
+4. **Output format** — pitch deck (.pptx), one-page proposal (.docx), rate card (.xlsx), or a combination?
 
-Never estimate or round up numbers the user hasn't provided — ask, or mark fields as `[pending data]`. A recap with fabricated metrics is worse than no recap.
+If the user has prior sponsorship decks or rate cards in the project, match their tone, tier names, and pricing structure rather than inventing a new format from scratch — consistency across prospects matters for a league selling multiple sponsorship categories.
 
-## Structure: deliverables-vs-actual tracking
+## Sponsorship tier structure
 
-Build the core of the report as a table, one row per contracted deliverable:
+Most league sponsorship sits on a tiered ladder. Default structure (adjust to what the user already uses):
 
-**Deliverable (from contract)** | **Committed** (what was promised — e.g. "2x court-side banners, all home games") | **Delivered** (what actually happened) | **Status** (fulfilled / partially fulfilled / not fulfilled) | **Evidence** (photo reference, screenshot, metric)
+- **Title/Presenting sponsor** — naming rights to the league or a marquee event, top-of-house branding, first-refusal on renewal, most exclusivity
+- **Category sponsor** — exclusivity within one product category (e.g. "Official Footwear Partner"), moderate branding + digital rights
+- **Official supplier/partner** — narrower scope, product-in-kind or smaller cash deals, less exclusivity
+- **Single-event activation** — one-off presence at a specific event, no season-long exclusivity
 
-Flag any deliverable marked partially/not fulfilled clearly — this needs to be addressed with the sponsor proactively, not buried. Better to surface it now than have the sponsor notice at renewal time.
+For each tier, define: price/value, category exclusivity, branding rights (jersey, court/venue, digital, broadcast overlay), hospitality (tickets, meet-and-greets, player appearances), content deliverables (social posts, video integrations), and term/renewal terms.
 
-## Reach & exposure metrics
+## Deck/proposal structure
 
-Where available, report:
-- **Attendance** (per event and cumulative for a season recap)
-- **Broadcast/streaming reach** (viewers, hours watched, markets reached)
-- **Social media** (impressions/reach for tagged or branded content, engagement rate, follower growth attributable to the partnership if trackable)
-- **Media/press mentions** (count and notable placements, especially any mentioning the sponsor by name)
-- **Estimated media value (EMV)** if the user has a methodology for converting impressions/exposure into an equivalent ad-spend value — only include if the user confirms the methodology, since EMV calculations vary widely and a sponsor may scrutinize the number
+When building a pitch deck or proposal, cover (skip sections that don't fit the ask):
+
+1. **The property** — what the league/event is, format, season structure, audience size and demographics
+2. **Audience & reach** — attendance, viewership, social following, past growth trajectory (ask the user for numbers rather than inventing them)
+3. **Why this brand** — a short, specific rationale connecting the brand's category/positioning to the league's audience (avoid generic "great fit" language — be concrete)
+4. **The ask** — the specific tier/package being proposed, with price
+5. **What's included** — itemized deliverables for that tier
+6. **Past partners / social proof** — logos or names of existing sponsors if the user wants to include them (only with permission)
+7. **Next steps** — proposed timeline to close
+
+## הצעת מחיר (formal Hebrew price quote)
+
+Separate from the pitch deck/proposal above — this is the formal, numbered commercial document ("הצעת מחיר") sent to a sponsor once they're ready for pricing in writing, following standard Israeli business-quote conventions. Trigger this whenever the user asks for an "הצעת מחיר", a quote, or a formal price document for a sponsor — in Hebrew, RTL, as a **docx**.
+
+**Ask before building** (unless already known from the project or a prior quote to reuse as a template):
+1. **Company details for the header** — company name, ח.פ./עוסק מורשה number, address, contact (phone/email), and logo if available.
+2. **Client details** — the sponsoring company's name, contact person, and if relevant their own ח.פ.
+3. **VAT treatment** — standard 18% (the current Israeli VAT rate as of 2025–2026) for a domestic client, or 0% export-rate if the sponsor is a foreign company without an Israeli presence (this needs the user to confirm — don't assume).
+4. **Payment terms and quote validity** — if not specified, ask; don't invent a default silently since these are commercially binding once sent.
+5. **Bank details** — only include if the user wants them on the quote itself for direct payment instructions.
+
+**Standard structure** (right-to-left, Hebrew):
+- **כותרת עליונה**: לוגו + שם החברה + ח.פ./עוסק מורשה + כתובת + טלפון/מייל
+- **מספר הצעה ותאריך** (מספור עוקב אם יש הצעות קודמות בפרויקט לשמור על רצף)
+- **לכבוד**: שם הלקוח/החברה הנחסה, איש קשר
+- **פירוט**: טבלת שורות — תיאור הפריט/חבילת החסות, כמות, מחיר יחידה, סה"כ לפני מע"מ
+- **סיכום**: סה"כ לפני מע"מ, מע"מ (18% או 0% לפי מה שהוגדר), סה"כ כולל מע"מ
+- **תוקף ההצעה** (לדוגמה: "ההצעה בתוקף ל-30 יום מתאריך הוצאתה")
+- **תנאי תשלום** (מקדמה, תשלומים, מועדי תשלום)
+- **הערות/סעיפים נוספים** (לדוגמה תלות בחתימת הסכם חסות מלא)
+- **חתימה**: מקום לחתימת המזמין ותאריך אישור, ופרטי חתימה מטעם החברה
+
+Pull the line-item pricing directly from the tier/rate card structure already defined earlier in this skill rather than re-deriving prices — a quote should match whatever rate card or proposal preceded it exactly, since inconsistency between them is the kind of thing that erodes trust with a sponsor.
 
 ## Output format
 
-- Use the **xlsx** skill for the underlying deliverables-vs-actual tracker and any metrics data — useful for internal tracking across many sponsors/deals.
-- Use the **pptx** skill for the sponsor-facing recap deck — visual, one deliverable or metric theme per slide, include photos of activations if the user has them.
-- Use the **docx** skill if a written narrative report is preferred over a deck.
+- Use the **pptx** skill for pitch decks — keep slides visual and light on text; put the itemized deliverables in a table slide.
+- Use the **docx** skill for one-page proposals, formal written offers, and the הצעת מחיר document (RTL, Hebrew).
+- Use the **xlsx** skill for rate cards — one row per tier/asset, columns for price, exclusivity, availability (sold/available/on hold), useful when the user is tracking multiple prospects against the same inventory.
 
-Close every sponsor-facing recap with a forward-looking section — what renewal or expanded package could look like next season — since this report often doubles as the opening move in the next sales conversation.
+Never fabricate audience numbers, past sponsor names, or pricing — ask the user for real figures. It's fine to draft placeholder structure with `[insert attendance figure]`-style brackets if the user wants a template to fill in later. The same applies to הצעת מחיר: never invent a ח.פ./עוסק מורשה number, bank details, or VAT treatment — these are legally/financially significant and must come from the user.
